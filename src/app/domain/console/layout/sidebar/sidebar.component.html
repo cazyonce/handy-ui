@@ -1,0 +1,26 @@
+<ul nz-menu [nzMode]="'inline'" style="width:inherit;height: inherit;" class="no-select">
+    <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+        <a [routerLink]="'/admin/home'"><i nz-icon nzType="home" theme="outline"></i><span class="nav-text">后台首页</span></a>
+    </li>
+    <li nz-submenu [nzOpen]="'true'">
+        <span title>系统管理</span>
+        <ul>
+            <li nz-menu-item routerLink="system/project_plan" routerLinkActive="ant-menu-item-selected">项目计划</li>
+            <li nz-menu-item routerLink="system/session_monitoring" routerLinkActive="ant-menu-item-selected">会话监控</li>
+        </ul>
+    </li>
+    <li nz-submenu [nzOpen]="'true'">
+        <span title>用户管理</span>
+        <ul>
+            <li nz-menu-item routerLink="user-manage/role-list" routerLinkActive="ant-menu-item-selected">角色列表</li>
+            <li nz-menu-item routerLink="user-manage/user-list" routerLinkActive="ant-menu-item-selected">用户列表</li>
+        </ul>
+    </li>
+    <li nz-submenu [nzOpen]="'true'">
+        <span title>网络代理</span>
+        <ul>
+            <li nz-menu-item routerLink="proxy/client" routerLinkActive="ant-menu-item-selected">代理客户端</li>
+        </ul>
+    </li>
+</ul>
+<!-- <div><i class="trigger" nz-icon [type]="isCollapsed?'menu-unfold':'menu-fold'" (click)="isCollapsed=!isCollapsed"></i></div> -->
