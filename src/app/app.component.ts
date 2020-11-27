@@ -3,8 +3,9 @@ import { PageService } from './core/service/page.service';
 import { Route, Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 @Component({
   selector: 'app-root',
+  //  <exception504 *ngIf="page.exception504()"></exception504>
   template: `
-    <exception504 *ngIf="page.exception504()"></exception504>
+   
     <router-outlet *ngIf="!page.exception()"></router-outlet>
   `,
   styleUrls: ['./app.component.css']
@@ -17,17 +18,17 @@ export class AppComponent implements OnInit {
   constructor(public page: PageService, private router: Router,
     private renderer: Renderer2, private element: ElementRef<Element>
   ) {
-    router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        // if (!this.isInit) {
-        // }
-      } else if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
-        if (this.isInit) {
-          this.isInit = false;
-          document.getElementById("pageInitloader").className = "preloader-hidden";
-        }
-      }
-    })
+    // router.events.subscribe(event => {
+    //   if (event instanceof NavigationStart) {
+    //     // if (!this.isInit) {
+    //     // }
+    //   } else if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
+    //     if (this.isInit) {
+    //       this.isInit = false;
+    //       document.getElementById("pageInitloader").className = "preloader-hidden";
+    //     }
+    //   }
+    // })
   }
 
   ngOnInit() {

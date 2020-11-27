@@ -1,0 +1,19 @@
+<ul nz-list [nzDataSource]="apiMappings" nzBordered nzSize="large">
+    <nz-list-header><button nz-button nzType="primary" routerLink="add">新增</button></nz-list-header>
+    <li nz-list-item *ngFor="let item of apiMappings" nzNoFlex>
+        <nz-list-item-meta>
+            <nz-list-item-meta-title>
+                <a href="https://ng.ant.design">{{ item.name }}</a>
+            </nz-list-item-meta-title>
+            <nz-list-item-meta-description>{{ item.desribe }}2222222</nz-list-item-meta-description>
+        </nz-list-item-meta>
+        {{ item.path }}
+        <ul nz-list-item-actions>
+            <nz-list-item-action>
+                <a nz-typography nzCopyable [nzCopyText]="item.path"></a>
+            </nz-list-item-action>
+        </ul>
+
+    </li>
+    <nz-list-footer>Footer</nz-list-footer>
+</ul>

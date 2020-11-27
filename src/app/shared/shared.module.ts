@@ -4,9 +4,9 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 const SYSTEMS = [CommonModule, ReactiveFormsModule, FormsModule];
 
-import { NgZorroAntdModule } from './ng-zorro-antd.module';
+import { MyNgZorroAntdModule } from './my-ng-zorro-antd.module';
 
-const LIBRARYS = [NgZorroAntdModule];
+const LIBRARYS = [MyNgZorroAntdModule];
 
 import { ServerExceptionComponent } from './components/exception/server-exception/server-exception.component';
 import { HtmlPipe } from './pipe/html.pipe';
@@ -18,10 +18,8 @@ const CONPONENTS = [
 ];
 
 const PIPES = [HtmlPipe];
-
 // 不能删除
 const routers: Routes = [];
-
 // 声明那些可能被特性模块引用的可复用组件、指令和管道。 
 @NgModule({
   declarations: [...CONPONENTS, ...PIPES],

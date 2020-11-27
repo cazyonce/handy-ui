@@ -6,12 +6,11 @@ import { APIMappingService } from '../../../core/service/api-mapping.service';
 
 
 @Injectable()
-export class APIMappingResolve implements Resolve<APIMappingEntity> {
+export class APIMappingListResolve implements Resolve<APIMappingEntity> {
 
     constructor(private service: APIMappingService) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<APIMappingEntity> | Observable<never> {
-        console.log("get admin login info...")
         return this.service.list();
     }
 }

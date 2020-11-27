@@ -1,0 +1,16 @@
+.user-layout{ height: 100%; }
+.layout-header{ position: fixed; top: 0px; height: 64px; width: 100%; box-shadow: 0 1px 10px rgba(0,0,0,.2); }
+.layout-body{ padding-top: 70px; height: 100%; }
+.layout-body .body-sidebar{ width:200px; height: 100%; position: fixed; }
+.layout-body .body-center{ height: 100%; margin-left: 200px; }
+.layout-body .body-center .center-breadcrumb{ 
+    display: flex;
+    align-items: flex-end;
+    height: 38px;
+    background-color: #fff;
+    padding-left: 20px;
+    position: relative;
+    z-index: +1;
+}
+.layout-body .body-center .center-content{ height: 100%; position: relative; top: -88px; padding: 75px 20px 20px 20px; }
+.layout-body .body-center .center-content > div{ background-color: #fff; height: inherit; }

@@ -1,0 +1,68 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm(validateForm.value)">
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7">Name</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+            <input nz-input formControlName="name" placeholder="Api name"/>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>API Path</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+            <input nz-input formControlName="path" placeholder="async validate try to write JasonWood" />
+            <ng-template #userErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Please input your path!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('duplicated')">
+                    The path is redundant!
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Execute SQL</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="Please write something here!">
+            <textarea formControlName="executeSQL" nz-input rows="2" placeholder="write any thing"></textarea>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7">Request Header</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+            <div nz-row>
+                <div nz-col nzSpan="11">
+                    <nz-cascader [nzOptions]="headerNameOptions" formControlName="requestHeader" [nzShowSearch]="true"
+                        [nzPlaceHolder]="'Select or input request header name'">
+                    </nz-cascader>
+                </div>
+                <div nz-col nzSpan="11" nzOffset="2">
+                        <nz-cascader [nzOptions]="headerNameOptions" formControlName="requestHeader" [nzShowSearch]="true"
+                            [nzPlaceHolder]="'Select or input request header value'">
+                        </nz-cascader>
+                    </div>
+            </div>
+            <!-- (ngModelChange)="onChanges($event)"  [(ngModel)]="values"-->
+
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7">API Describe</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzErrorTip="Please write something here!">
+            <textarea formControlName="describe" nz-input rows="2" placeholder="write any thing"></textarea>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7">Status</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+            <nz-radio-group formControlName="status">
+                <label nz-radio-button [nzValue]="0">Disable</label>
+                <label nz-radio-button [nzValue]="1">Enable</label>
+            </nz-radio-group>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control [nzOffset]="7" [nzSpan]="12">
+            <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
+            <button nz-button (click)="resetForm($event)">Reset</button>
+        </nz-form-control>
+    </nz-form-item>
+</form>

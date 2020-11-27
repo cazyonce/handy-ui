@@ -15,6 +15,12 @@ import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzResultModule } from 'ng-zorro-antd/result';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzCascaderModule } from 'ng-zorro-antd/cascader';
 @NgModule({
     exports: [
 
@@ -33,9 +39,15 @@ import { NzResultModule } from 'ng-zorro-antd/result';
         NzTabsModule,
         NzTagModule,
         NzResultModule,
+        NzMenuModule,
+        NzDividerModule,
+        NzBreadCrumbModule,
+        NzListModule,
+        NzTypographyModule,
+        NzCascaderModule,
     ]
 })
 
-export class NgZorroAntdModule {
+export class MyNgZorroAntdModule {
 
 }

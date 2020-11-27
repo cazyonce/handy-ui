@@ -1,0 +1,19 @@
+.header{ background-color:#1890ff; height:inherit; color: #fff; }
+.header .logo { 
+  width: 200px;
+  display: inline-flex;
+  font-size: 26px;
+  height: 64px;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.header .right {
+  float: right;
+  display: inline-flex;
+  height: 64px;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
