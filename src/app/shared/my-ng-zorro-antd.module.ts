@@ -21,6 +21,7 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzCascaderModule } from 'ng-zorro-antd/cascader';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
 @NgModule({
     exports: [
 
@@ -45,6 +46,7 @@ import { NzCascaderModule } from 'ng-zorro-antd/cascader';
         NzListModule,
         NzTypographyModule,
         NzCascaderModule,
+        NzLayoutModule,
     ]
 })
 

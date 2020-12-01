@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { SigninGuard } from './core/guard/signin.guard';
 
 const router: Routes = [
-  { path: '', loadChildren: () => import('./domain/console/console.module').then(m => m.ConsoleModule), data: { breadcrumb: null }  },
+  // { path: '', loadChildren: () => import('./domain/console/console.module').then(m => m.ConsoleModule), data: { breadcrumb: null }  },
+  { path: '', loadChildren: () => import('./domain/ui-factory/ui-factory.module').then(m => m.UIFactoryModule), data: { breadcrumb: null }  },
   { path: 'ui_factory', loadChildren: () => import('./domain/ui-factory/ui-factory.module').then(m => m.UIFactoryModule), data: { breadcrumb: null }  },
   { path: 'admin', canLoad: [SigninGuard], loadChildren: () => import('./domain/console/console.module').then(m => m.ConsoleModule), data: { breadcrumb: null } },
 ];
