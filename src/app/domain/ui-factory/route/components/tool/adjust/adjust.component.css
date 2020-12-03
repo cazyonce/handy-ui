@@ -1,0 +1,16 @@
+.adjust{
+    width: 100px;
+    height: 100px;
+    border: 1px dashed;
+    position: absolute;
+    /* left: 100px; */
+    /* top: 100px; */
+  }
+  .adjust div{
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border: 1px solid #59c7f9;
+    border-radius: 10px;
+      position: absolute;
+  }

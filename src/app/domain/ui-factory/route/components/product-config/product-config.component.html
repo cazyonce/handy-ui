@@ -1,0 +1,8 @@
+<form nz-form [formGroup]="validateForm">
+    <nz-form-item *ngFor="let config of configs">
+        <nz-form-label [nzSpan]="4" nzFor="name">{{config.labelText}}</nz-form-label>
+        <nz-form-control [nzSpan]="20" nzValidatingTip="{{config.describe}}"  nzValidateStatus="validating">
+            <input [type]="config.type" nz-input [formControlName]="config.formControlName" [placeholder]="config.placeholder" />
+        </nz-form-control>
+    </nz-form-item>
+</form>

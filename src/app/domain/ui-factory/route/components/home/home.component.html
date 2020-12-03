@@ -6,38 +6,52 @@
 <div #selector class="selector">
   <div></div>
 </div>
-<nz-layout  (mousemove)="posqq($event)">
-    <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
-      <div class="logo"></div>
-      <ul nz-menu nzTheme="dark" nzMode="inline">
-        <!-- <li nz-submenu nzTitle="Component" nzIcon="user">
+
+<!-- (mousemove)="posqq($event)" -->
+<nz-layout>
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <!-- <li nz-submenu nzTitle="Component" nzIcon="user">
           <ul>
             <li nz-menu-item>Button</li>
           </ul>
         </li> -->
-        <li nz-menu-item>
-          <span (click)="onClickButton()">Button</span>
-        </li>
-      </ul>
-    </nz-sider>
-    <nz-layout>
-      <nz-header>
-        <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="isCollapsed = !isCollapsed"></i>
-      </nz-header>
-      <nz-content>
-        <nz-breadcrumb>
-          <nz-breadcrumb-item>User</nz-breadcrumb-item>
-          <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
-        </nz-breadcrumb>
-        <div class="inner-content">
-            <div >
-                <div style="padding-left:10px">12312312<p style="padding-left:10px;margin-left: 10px;border: 1px solid">qqqqqqq</p><span>wwwwwwww</span></div>
-                <div style="border: 1px solid">12312312qweq</div>
-                <div class="testclass" style="border: 1px solid">1231231212312</div>
-            </div>
-          <div #vc></div>
+      <li nz-menu-item *ngFor="let component of components" (click)="onClickConponentName(component)">
+        <span>{{component.getName()}}</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        (click)="isCollapsed = !isCollapsed"></i>
+    </nz-header>
+    <nz-content>
+      <nz-breadcrumb>
+        <nz-breadcrumb-item>User</nz-breadcrumb-item>
+        <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
+      </nz-breadcrumb>
+      <div class="inner-content">
+        <div nz-row>
+          <div nz-col nzSpan="16" >
+            <adjust></adjust>
+            <!-- <div> (mouseup)="onMouseupAdjust()"
+                <button #testbutton id="testbutton" nzType="primary">Primarywwwwwwww</button>
+              <div style="padding-left:10px">12312312<p style="padding-left:10px;margin-left: 10px;border: 1px solid">
+                  qqqqqqq</p><span>wwwwwwww</span></div>
+              <div style="border: 1px solid">12312312qweq</div>
+              <div class="testclass" style="border: 1px solid">1231231212312</div>
+            </div> -->
+            <div #vc></div>
+          </div>
+          <div nz-col nzSpan="8">
+            <product-config *ngIf="currentComponentService"
+              [configs]="currentComponentService?.getComponentConfigs() || []"></product-config>
+          </div>
         </div>
-      </nz-content>
-      <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
-    </nz-layout>
+      </div>
+    </nz-content>
+    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
   </nz-layout>
+</nz-layout>

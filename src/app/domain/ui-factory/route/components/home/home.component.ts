@@ -3,6 +3,7 @@ import { RouteModule } from '../../route.module';
 import { MyNgZorroAntdModule } from 'src/app/shared/my-ng-zorro-antd.module';
 import { NzButtonGroupComponent } from 'ng-zorro-antd/button/public-api';
 import { ButtonComponent } from '../product/button/button.component';
+import { ButtonService } from '../../../core/service/component/button-service';
 
 @Component({
   selector: 'app-home',
@@ -14,23 +15,47 @@ export class HomeComponent implements OnInit {
   @ViewChild('vc', { read: ViewContainerRef }) vc: ViewContainerRef;
 
   @ViewChild('selector', { read: ElementRef }) selector: ElementRef;
+
+
+  @ViewChild('testbutton', { read: ElementRef }) testbutton: ElementRef;
+  components = [new ButtonService()];
   // constructor() { }
   constructor(private _compiler: Compiler,
     private _injector: Injector,
     private _m: NgModuleRef<any>, private componentFactoryResolver: ComponentFactoryResolver, private loader: NgModuleFactoryLoader, private render2: Renderer2) {
   }
+  currentComponentService: ButtonService;
+ 
+
   lastElement;
 
   ngOnInit() {
 
   }
+  
+
+  onClickElement(event) {
+    var el: any = document.elementFromPoint(event.clientX, event.clientY);
+    if (this.lastElement != null && this.lastElement == el) {
+      return;
+    }
+
+  }
+
+  parsePXToInt(px: string): number {
+    if (px != "" && px !== "0px") {
+      return Number.parseInt(px.substring(0, px.length - 2));
+    }
+    return 0;
+  };
+
   // 根据鼠标位置获取元素
   public posqq(event) {
     var el: any = document.elementFromPoint(event.clientX, event.clientY);
     if (this.lastElement != null && this.lastElement == el) {
       return;
     }
-    console.log( document.documentElement.scrollTop )
+    console.log(document.documentElement.scrollTop)
     this.lastElement = el;
     // console.log(el.offsetHeight, el.offsetWidth)
     var pos = el.getBoundingClientRect();
@@ -43,17 +68,10 @@ export class HomeComponent implements OnInit {
     var padding = { top: this.getstyle(el, "padding-top"), bottom: this.getstyle(el, "padding-bottom"), left: this.getstyle(el, "padding-left"), right: this.getstyle(el, "padding-right") };
     var margin = { top: this.getstyle(el, "margin-top"), bottom: this.getstyle(el, "margin-bottom"), left: this.getstyle(el, "margin-left"), right: this.getstyle(el, "margin-right") };
 
-    function parsePXToInt(px: string): number {
-      if (px != "" && px !== "0px") {
-        return Number.parseInt(px.substring(0, px.length - 2));
-      }
-      return 0;
-    };
-
-    var offsetX =parsePXToInt(margin.left) ;
+    var offsetX = this.parsePXToInt(margin.left);
     //  parsePXToInt(padding.left)  + + parsePXToInt(padding.right)+ parsePXToInt(margin.right);
 
-    var offsetY =  parsePXToInt(margin.top);
+    var offsetY = this.parsePXToInt(margin.top);
     //   parsePXToInt(padding.top)+ + parsePXToInt(padding.bottom)+ parsePXToInt(margin.bottom);
 
     // var left = el.style.marginLeft
@@ -66,7 +84,7 @@ export class HomeComponent implements OnInit {
     //   offsetX += Number.parseInt(left.substring(0, left.length - 2));
     // }
 
-    this.render2.setStyle(this.selector.nativeElement, "left", (pos.left - offsetX) + "px");
+    this.render2.setStyle(this.selector.nativeElement, "left", (pos.left - offsetX + document.documentElement.scrollLeft) + "px");
 
     // var offsetY = 0;
     // var top = el.style.marginTop
@@ -79,7 +97,7 @@ export class HomeComponent implements OnInit {
     //   offsetY += Number.parseInt(top.substring(0, top.length - 2));
     // }
 
-    this.render2.setStyle(this.selector.nativeElement, "top", (pos.top - offsetY+document.documentElement.scrollTop ) + "px");
+    this.render2.setStyle(this.selector.nativeElement, "top", (pos.top - offsetY + document.documentElement.scrollTop) + "px");
     console.log("padding", padding)
     console.log("margin", margin)
     console.log(el.localName, pos, offsetX, offsetY)
@@ -106,8 +124,23 @@ export class HomeComponent implements OnInit {
     // console.dir(this.selector)
   }
 
-  onClickButton() {
-    this.ngAfterViewInit();
+  onClickConponentName(component: ButtonService) {
+    this.currentComponentService = component;
+    component.generateComponent(this._compiler, this.vc)
+
+    //   const template = '<button nz-button nzType="primary">Primary Buttonqqqqqqqqqqq</button>';
+
+    // const tmpCmp = Component({ template: template })(class {
+    // });
+    // const tmpModule = NgModule({ declarations: [tmpCmp], imports: [MyNgZorroAntdModule] })(class {
+    // });
+
+    // this._compiler.compileModuleAndAllComponentsAsync(tmpModule)
+    //   .then((factories) => {
+    //     const f = factories.componentFactories[0];
+    //     const cmpRef = this.vc.createComponent(f);
+    //     cmpRef.instance.name = 'dynamic';
+    //   })
   }
 
   setBorder(el, paddingValue: string, posName: string, borderColor: string) {
@@ -126,35 +159,40 @@ export class HomeComponent implements OnInit {
       // return  document.defaultView.getComputedStyle(obj,null)[style]//谷歌，火狐下获取默认样式
     }
   }
+
   // ngAfterViewInit() {
   //  var f= this.componentFactoryResolver.resolveComponentFactory(ButtonComponent);
   //  //.create(this._injector,[[]],this._m);
   //  console.log(f)
   //   const cmpRef = this.vc.createComponent(f);
   // }
-  ngAfterViewInit() {
-    const template = '<span>generated on the fly: {{name}}</span><button nz-button nzType="primary">Primary Buttonqqqqqqqqqqq</button>';
+  // ngAfterViewInit() {
+  //   console.log(111,this.testbutton)
+  //   // document.getElementById("testbutton").createAttribute("nz-button")
+  //   // this.testbutton.nativeElement.attributes["nz-button"]="";
 
-    const tmpCmp = Component({ template: template })(class {
-    });
-    const tmpModule = NgModule({ declarations: [tmpCmp], imports: [MyNgZorroAntdModule] })(class {
-    });
+  //   const template = '<span>generated on the fly: {{name}}</span><button nz-button nzType="primary">Primary Buttonqqqqqqqqqqq</button>';
 
-    this._compiler.compileModuleAndAllComponentsAsync(tmpModule)
-      .then((factories) => {
-        const f = factories.componentFactories[0];
-        // console.log(factories.componentFactories)
-        // console.log(this.vc)
-        // console.log(f)
-        const cmpRef = this.vc.createComponent(f);
-        cmpRef.instance.name = 'dynamic';
-        // var ref:ChangeDetectorRef = cmpRef.changeDetectorRef;
-        // cmpRef.hostView.detectChanges()
-        // cmpRef.changeDetectorRef.reattach();
-        // cmpRef.changeDetectorRef.detectChanges();
-        // console.dir(cmpRef)
-      })
-  }
+  //   const tmpCmp = Component({ template: template })(class {
+  //   });
+  //   const tmpModule = NgModule({ declarations: [tmpCmp], imports: [MyNgZorroAntdModule] })(class {
+  //   });
+
+  //   this._compiler.compileModuleAndAllComponentsAsync(tmpModule)
+  //     .then((factories) => {
+  //       const f = factories.componentFactories[0];
+  //       // console.log(factories.componentFactories)
+  //       // console.log(this.vc)
+  //       // console.log(f)
+  //       const cmpRef = this.vc.createComponent(f);
+  //       cmpRef.instance.name = 'dynamic';
+  //       // var ref:ChangeDetectorRef = cmpRef.changeDetectorRef;
+  //       // cmpRef.hostView.detectChanges()
+  //       // cmpRef.changeDetectorRef.reattach();
+  //       // cmpRef.changeDetectorRef.detectChanges();
+  //       // console.dir(cmpRef)
+  //     })
+  // }
 
   // loadComponent() {
 
