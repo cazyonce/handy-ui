@@ -12,7 +12,7 @@ import { ButtonService } from '../../../core/service/component/button-service';
 })
 export class HomeComponent implements OnInit {
   isCollapsed = false;
-  @ViewChild('vc', { read: ViewContainerRef }) vc: ViewContainerRef;
+  @ViewChild('generateUIArea', { read: ViewContainerRef }) vc2: ViewContainerRef;
 
   @ViewChild('selector', { read: ElementRef }) selector: ElementRef;
 
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   }
   
 
-  onClickElement(event) {
+  onClickGenerateUIAreaElement(event) {
     var el: any = document.elementFromPoint(event.clientX, event.clientY);
     if (this.lastElement != null && this.lastElement == el) {
       return;
@@ -126,7 +126,7 @@ export class HomeComponent implements OnInit {
 
   onClickConponentName(component: ButtonService) {
     this.currentComponentService = component;
-    component.generateComponent(this._compiler, this.vc)
+    component.generateComponent(this._compiler, this.vc2)
 
     //   const template = '<button nz-button nzType="primary">Primary Buttonqqqqqqqqqqq</button>';
 

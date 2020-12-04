@@ -3,8 +3,9 @@
     height: 100px;
     border: 1px dashed;
     position: absolute;
-    /* left: 100px; */
-    /* top: 100px; */
+    /* left: 50px; */
+    /* top: 50px; */
+    cursor: move;
   }
   .adjust div{
     width: 10px;

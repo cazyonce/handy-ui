@@ -34,20 +34,22 @@
       </nz-breadcrumb>
       <div class="inner-content">
         <div nz-row>
-          <div nz-col nzSpan="16" >
-            <adjust></adjust>
-            <!-- <div> (mouseup)="onMouseupAdjust()"
-                <button #testbutton id="testbutton" nzType="primary">Primarywwwwwwww</button>
+          <div nz-col nzSpan="16">
+            <!-- <div (mousemove)="posqq($event)">
+              <button #testbutton id="testbutton" nzType="primary">Primarywwwwwwww</button>
               <div style="padding-left:10px">12312312<p style="padding-left:10px;margin-left: 10px;border: 1px solid">
                   qqqqqqq</p><span>wwwwwwww</span></div>
               <div style="border: 1px solid">12312312qweq</div>
               <div class="testclass" style="border: 1px solid">1231231212312</div>
             </div> -->
-            <div #vc></div>
+            <div #vc style="width: 500px;height:500px;background:#9b9baf">
+              <adjust [panel]="vc"></adjust>
+              <div #generateUIArea></div>
+            </div>
           </div>
           <div nz-col nzSpan="8">
-            <product-config *ngIf="currentComponentService"
-              [configs]="currentComponentService?.getComponentConfigs() || []"></product-config>
+            <!-- <product-config *ngIf="currentComponentService"
+              [configs]="currentComponentService?.getComponentConfigs() || []"></product-config> -->
           </div>
         </div>
       </div>
